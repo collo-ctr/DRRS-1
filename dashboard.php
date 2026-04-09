@@ -73,6 +73,9 @@ $incidents = $conn->query("SELECT * FROM emergency_reports
              <button class="filter-btn" onclick="filterIncidents('police')">Police</button>
              <button class="filter-btn" onclick="filterIncidents('flood')">Flood</button>
              <button class="filter-btn" onclick="filterIncidents('collapse')">Collapse</button>
+             <button class="filter-btn" onclick="filterIncidents('road accident')">Road Accident</button>
+             <button class="filter-btn" onclick="filterIncidents('gas / chemical')">Gas/Chemical</button>
+             <button class="filter-btn" onclick="filterIncidents('missing person')">Missing Person</button>
              <button class="simulate-btn" onclick="simulateIncoming()">+ Simulate Incoming</button>
         </div>
 
@@ -125,7 +128,7 @@ function filterIncidents(type) {
     document.querySelectorAll('.incident-card').forEach(card => {
         const cardType = card.querySelector('.tag-type');
         if (!cardType) return;
-        if (type === 'all' || cardType.classList.contains(type)) {
+        if (type === 'all' || cardType.textContent.trim().toLowerCase() === type.toLowerCase()) {
             card.style.display = 'flex';
         } else {
             card.style.display = 'none';
